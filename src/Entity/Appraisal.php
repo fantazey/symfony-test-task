@@ -9,6 +9,10 @@ use Symfony\Component\Validator\Constraints;
  */
 class Appraisal
 {
+    const
+        COMISSION_TYPE = 'comission',
+        CONTRACT_TYPE = 'contract';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

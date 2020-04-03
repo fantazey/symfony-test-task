@@ -29,10 +29,7 @@ services:
     App\EventListener\AppraisalEventListener:
         tags:
             -
-                name: 'doctrine.event_listener'
-                entity: 'App\Entity\Appraisal'
-                event: 'postPersist'
-                priority: 0
-                connection: 'default'
+              { name: doctrine.event_listener, event: postPersist, priority: 0 }
 
-                lazy: true
+    App\Service\OffersFetcherService:
+        arguments: ['@doctrine.orm.entity_manager']

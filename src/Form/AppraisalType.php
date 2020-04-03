@@ -4,7 +4,6 @@
 namespace App\Form;
 
 use App\Entity\{Appraisal,Car};
-use App\Repository\AppraisalRepository;
 use App\Repository\CarRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,8 +35,8 @@ class AppraisalType extends AbstractType
             ->add('repairPrice', NumberType::class)
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'Contract' => 'contract',
-                    'Comission' => 'comission'
+                    'Contract' => Appraisal::CONTRACT_TYPE,
+                    'Comission' => Appraisal::COMISSION_TYPE
                 ]
             ]);
     }

@@ -24,9 +24,8 @@ class CarRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->leftJoin('App\Entity\Appraisal', 'a', Join::WITH, 'c.id = a.car')
-            ->where('a.id is NULL')
+            ->where('a.id IS NULL')
             ->orderBy('c.id', 'ASC')
-            //->getQuery()->getResult()
             ;
     }
 }

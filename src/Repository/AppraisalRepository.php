@@ -19,33 +19,24 @@ class AppraisalRepository extends ServiceEntityRepository
         parent::__construct($registry, Appraisal::class);
     }
 
-
-    // /**
-    //  * @return Appraisal[] Returns an array of Appraisal objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findUpdatedAppraisals(int $limit, int $offset)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('a.average_price > 0')
+            ->orderBy('a.car', 'ASC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Appraisal
+    public function countUpdatedAppraisals(): int
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+        return $this->createQueryBuilder('a')->select('count(a.id)')
+            ->where('a.average_price > 0')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getSingleScalarResult()
+            ;
     }
-    */
 }

@@ -19,9 +19,9 @@ class AppraisalEventListener
     }
 
     public function postPersist(LifecycleEventArgs $args) {
-        /** @var Appraisal $appraisal */
-        $appraisal = $args->getObject();
-        $this->offersFetcher->fetchOffers($appraisal);
-        return null;
+        $object = $args->getObject();
+        if ($object instanceof Appraisal && !$object->getBuybackPrice()) {
+            $this->offersFetcher->fetchOffers($object);
+        }
     }
 }
